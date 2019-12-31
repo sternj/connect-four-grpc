@@ -1,0 +1,25 @@
+syntax = "proto3";
+package connect_four_proto;
+
+service  ConnectFour {
+    rpc StartGame (StartGameRequest) returns (StartGameResponse) {}
+    rpc Move (MoveRequest) returns (MoveResponse) {}
+}
+
+message StartGameRequest {}
+
+message StartGameResponse {
+    bool started = 1;
+    string uuid = 2;
+}
+
+message MoveRequest {
+    string game_uuid = 1;
+    int32 column = 2;
+    int32 player = 3;
+}
+
+message MoveResponse {
+    repeated int32 board = 1;
+    int32 winner = 2;
+}
